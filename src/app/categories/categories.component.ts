@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class CategoriesComponent {
 
+  onSubmit(categoryform: any) {
+    let categoryData = {
+      category: categoryform.value.category
+    }
+    console.log(categoryData)
+  }
 }
