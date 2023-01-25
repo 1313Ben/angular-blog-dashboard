@@ -13,13 +13,15 @@ import { provideAuth, getAuth} from '@angular/fire/auth';
 import { provideFunctions, getFunctions} from '@angular/fire/functions';
 import { provideStorage, getStorage} from '@angular/fire/storage';
 import { environment } from 'src/environments/environment.prod';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
