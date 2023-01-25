@@ -9,6 +9,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore} from '@angular/fire/firestore';
+import { provideAuth, getAuth} from '@angular/fire/auth';
+import { provideFunctions, getFunctions} from '@angular/fire/functions';
+import { provideStorage, getStorage} from '@angular/fire/storage';
 import { environment } from 'src/environments/environment.prod';
 
 @NgModule({
@@ -22,7 +25,10 @@ import { environment } from 'src/environments/environment.prod';
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideFirestore(() => getFirestore)
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideFunctions(() => getFunctions()),
+    provideStorage(() =>getStorage())
   ],
   providers: [],
   bootstrap: [AppComponent]
