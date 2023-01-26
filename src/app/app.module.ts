@@ -13,12 +13,6 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment.prod';
 import { CategoriesComponent } from './categories/categories.component';
 
-//import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-//import { provideFirestore, getFirestore} from '@angular/fire/firestore';
-//import { provideAuth, getAuth} from '@angular/fire/auth';
-//import { provideFunctions, getFunctions} from '@angular/fire/functions';
-//import { provideStorage, getStorage} from '@angular/fire/storage';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +27,6 @@ import { CategoriesComponent } from './categories/categories.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     FormsModule
-    //provideAuth(() => getAuth()),
-    //provideFirestore(() => getFirestore()),
-    //provideFunctions(() => getFunctions()),
-    //provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent]
