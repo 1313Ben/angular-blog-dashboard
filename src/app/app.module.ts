@@ -8,13 +8,16 @@ import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
-import { provideFirestore, getFirestore} from '@angular/fire/firestore';
-import { provideAuth, getAuth} from '@angular/fire/auth';
-import { provideFunctions, getFunctions} from '@angular/fire/functions';
-import { provideStorage, getStorage} from '@angular/fire/storage';
+import { AngularFireModule } from '@angular/fire/compat/';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment.prod';
 import { CategoriesComponent } from './categories/categories.component';
+
+//import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+//import { provideFirestore, getFirestore} from '@angular/fire/firestore';
+//import { provideAuth, getAuth} from '@angular/fire/auth';
+//import { provideFunctions, getFunctions} from '@angular/fire/functions';
+//import { provideStorage, getStorage} from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,13 @@ import { CategoriesComponent } from './categories/categories.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideFunctions(() => getFunctions()),
-    provideStorage(() => getStorage()),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
     FormsModule
+    //provideAuth(() => getAuth()),
+    //provideFirestore(() => getFirestore()),
+    //provideFunctions(() => getFunctions()),
+    //provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent]
