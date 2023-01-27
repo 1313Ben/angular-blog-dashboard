@@ -17,10 +17,18 @@ export class CategoriesComponent {
     let categoryData = {
       category: categoryform.value.category
     }
+    let subCategoryData = {
+      subCategory: 'Subcategory1'
+    }
 
-    this.fireStore.collection('collections').add(categoryData)
+    this.fireStore.collection('categories').add(categoryData)
       .then(docRef => {
         console.log(docRef)
+        this.fireStore.collection('categories').doc(docRef.id).collection('subcategories').add(subCategoryData)
+          .then(docRef2 => {
+          console.log(docRef2)
+        })    .catch(err => {console.log(err)})
+        console.log(categoryData)
       })
     .catch(err => {console.log(err)})
     console.log(categoryData)
