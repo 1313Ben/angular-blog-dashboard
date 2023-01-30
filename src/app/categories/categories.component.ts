@@ -2,6 +2,7 @@ import { CategoriesService } from './../services/categories.service';
 import { Firestore } from '@angular/fire/firestore';
 import { Component } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Category } from '../models/category';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CategoriesComponent {
   }
 
   onSubmit(categoryform: any) {
-    let categoryData = {
+    let categoryData: Category = {
       category: categoryform.value.category
     }
     this.categoryService.saveData(categoryData)
