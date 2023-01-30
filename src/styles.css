@@ -3,6 +3,7 @@
 /* ~ stands for node_modules folder */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import '~ngx-toastr/toastr';
 
 /* Common theme CSS variables */
 
