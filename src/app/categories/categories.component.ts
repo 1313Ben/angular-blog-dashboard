@@ -12,13 +12,16 @@ import { Category } from '../models/category';
 })
 export class CategoriesComponent implements OnInit {
 
+  categoryArray: Array<object> | any;
+
   constructor(private categoryService: CategoriesService) {
   }
   
   ngOnInit(): void {
-    this.categoryService.loadData().subscribe(
-      val => console.log(val)
-    )
+    this.categoryService.loadData().subscribe( val =>{
+      console.log(val);
+      this.categoryArray = val;
+    })
   }
 
   onSubmit(categoryform: any) {
@@ -27,7 +30,7 @@ export class CategoriesComponent implements OnInit {
     }
     this.categoryService.saveData(categoryData)
 
-
+    categoryform.reset()
 /*     let subCategoryData = {
       subCategory: 'Subcategory1'
     }
