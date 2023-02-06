@@ -13,6 +13,8 @@ import { Category } from '../models/category';
 export class CategoriesComponent implements OnInit {
 
   categoryArray: Array<object> | any;
+  formCategory: string | any;
+  formStatus: string = "Add";
 
   constructor(private categoryService: CategoriesService) {
   }
@@ -46,5 +48,12 @@ export class CategoriesComponent implements OnInit {
       }).catch(err => { console.log(err) })
     
     console.log(categoryData) */
+  }
+
+  onEdit(category: any) {
+    this.formCategory = category;
+    this.formStatus = "Edit";
+    console.log(category);
+    
   }
 }
