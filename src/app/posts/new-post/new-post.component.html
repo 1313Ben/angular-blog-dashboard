@@ -13,11 +13,21 @@
           <div class="card-body">
             <div class="form-group">
               <label>Title</label>
-              <input type="text" class="form-control" />
+              <input
+                type="text"
+                class="form-control"
+                (keyup)="onTitleChanged($event)"
+              />
             </div>
             <div class="form-group">
               <label>Permalink</label>
-              <input type="text" class="form-control" />
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="permaLink"
+                name="permaLink"
+                disabled
+              />
             </div>
             <div class="form-group">
               <label>Excerpt</label>
