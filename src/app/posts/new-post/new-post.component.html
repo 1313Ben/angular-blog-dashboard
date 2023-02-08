@@ -42,6 +42,9 @@
           <label for="">Please select a post category</label>
           <select class="form-control">
             <option value="" disabled>Please select a category</option>
+            <option *ngFor="let category of categories" value="">
+              {{ category.data.category }}
+            </option>
           </select>
         </div>
 
