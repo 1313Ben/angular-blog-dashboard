@@ -113,9 +113,12 @@
       <div class="col-md-5">
         <div class="form-group">
           <label for="">Please select a post category</label>
-          <select class="form-control">
+          <select class="form-control" formControlName="category">
             <!-- <option value="">Please select a category</option> -->
-            <option *ngFor="let category of categories" value="">
+            <option
+              *ngFor="let category of categories"
+              value="{{ category.id }} - {{ category.data.category }}"
+            >
               {{ category.data.category }}
             </option>
           </select>

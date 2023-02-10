@@ -1,3 +1,4 @@
+import { Post } from './../../models/post';
 import { CategoriesService } from './../../services/categories.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,6 +24,7 @@ export class NewPostComponent implements OnInit{
     this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(10)]],
       permalink: ['', Validators.required],
+      category: [''],
       excerpt: ['', [Validators.required, Validators.minLength(50)]],
       postImg: ['', Validators.required],
       content: ['', Validators.required]
@@ -43,7 +45,7 @@ export class NewPostComponent implements OnInit{
     //console.log($event.target.value)
     const title = $event.target.value;
     this.permaLink = title.replace(/\s/g, "-");
-    console.log(this.permaLink)
+    //console.log(this.permaLink)
   }
 
   showPreview($event: any) {
@@ -58,5 +60,24 @@ export class NewPostComponent implements OnInit{
 
   onSubmit() {
     console.log(this.postForm.value)
+    let splitted = this.postForm.value.category.split('-')
+    const postData: Post = {
+      title: this.postForm.value.title,
+      permalink: this.postForm.value.title,
+      category: {
+        categoryId: splitted[0],
+        category: splitted[1]
+      },
+      postImgPath: '',
+      excerpt: this.postForm.value.except,
+      content: this.postForm.value.content,
+      isFeatured: false,
+      views: 0,
+      status: 'new',
+      createdAt: new Date()
+    }
+
+    console.log(postData)
+
   }
 }
