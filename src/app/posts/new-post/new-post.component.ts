@@ -55,4 +55,8 @@ export class NewPostComponent implements OnInit{
     reader.readAsDataURL($event.target.files[0])
     this.selectedImg = $event.target.files[0]
   }
+
+  onSubmit() {
+    console.log(this.postForm.value)
+  }
 }
