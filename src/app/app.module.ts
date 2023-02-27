@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { AngularFireModule } from '@angular/fire/compat/';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import {AngularFireStorageModule} from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment.prod';
 import { CategoriesComponent } from './categories/categories.component';
 import { AllPostComponent } from './posts/all-post/all-post.component';
@@ -40,7 +41,8 @@ import { NewPostComponent } from './posts/new-post/new-post.component';
     BrowserAnimationsModule,
     HttpClientModule,
     AngularEditorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent]
