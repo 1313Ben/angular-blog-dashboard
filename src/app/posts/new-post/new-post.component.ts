@@ -12,7 +12,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class NewPostComponent implements OnInit{
 
   permaLink: string = "";
-  imgSrc: any = "./assets/placeholder-image.png";
+  defaultImgURL: string = "./assets/placeholder-image.png"
+  imgSrc: any = this.defaultImgURL;
   selectedImg: any;
 
   categories: Array<object> | any;
@@ -70,17 +71,16 @@ export class NewPostComponent implements OnInit{
         category: splitted[1]
       },
       postImgPath: '',
-      excerpt: this.postForm.value.except,
+      excerpt: this.postForm.value.excerpt,
       content: this.postForm.value.content,
       isFeatured: false,
       views: 0,
       status: 'new',
       createdAt: new Date()
     }
-
     // console.log(postData)
-
-    this.postService.uploadImage(this.selectedImg);
-
+    this.postService.uploadImage(this.selectedImg, postData);
+    this.postForm.reset();
+    this.imgSrc = this.defaultImgURL;
   }
 }
