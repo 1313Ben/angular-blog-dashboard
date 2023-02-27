@@ -1,3 +1,4 @@
+import { PostsService } from './../../services/posts.service';
 import { Post } from './../../models/post';
 import { CategoriesService } from './../../services/categories.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,7 +21,7 @@ export class NewPostComponent implements OnInit{
 
   isDisabled: boolean = true;
 
-  constructor(private categoryService: CategoriesService, private fb: FormBuilder) { 
+  constructor(private categoryService: CategoriesService, private fb: FormBuilder, private postService: PostsService) { 
     this.postForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(10)]],
       permalink: ['', Validators.required],
@@ -77,7 +78,9 @@ export class NewPostComponent implements OnInit{
       createdAt: new Date()
     }
 
-    console.log(postData)
+    // console.log(postData)
+
+    this.postService.uploadImage(this.selectedImg);
 
   }
 }

@@ -1,3 +1,4 @@
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class PostsService {
 
-  constructor() { }
+  constructor(private storage: AngularFireStorage) { }
+
+  uploadImage(selectedImage: any) {
+    const filePath = `postIMG/${Date.now()}`;
+    console.log(filePath)
+  }
 }
