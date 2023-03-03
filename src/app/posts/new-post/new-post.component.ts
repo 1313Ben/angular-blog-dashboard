@@ -3,6 +3,7 @@ import { Post } from './../../models/post';
 import { CategoriesService } from './../../services/categories.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-new-post',
@@ -22,14 +23,33 @@ export class NewPostComponent implements OnInit{
 
   isDisabled: boolean = true;
 
-  constructor(private categoryService: CategoriesService, private fb: FormBuilder, private postService: PostsService) { 
-    this.postForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(10)]],
-      permalink: ['', Validators.required],
-      category: [''],
-      excerpt: ['', [Validators.required, Validators.minLength(50)]],
-      postImg: ['', Validators.required],
-      content: ['', Validators.required]
+  post: any;
+
+  formStatus: string = "Add New"
+
+  constructor(
+    private categoryService: CategoriesService,
+    private fb: FormBuilder,
+    private postService: PostsService,
+    private route: ActivatedRoute
+  ) { 
+  
+    this.route.queryParams.subscribe(val => {
+      // console.log(val['id']);
+      this.postService.loadOneData(val['id']).subscribe(post => {
+        //console.log(post)
+        this.post = post;
+        this.postForm = this.fb.group({
+          title: [this.post.title, [Validators.required, Validators.minLength(10)]],
+          permalink: [this.post.permalink, Validators.required],
+          excerpt: [this.post.excerpt, [Validators.required, Validators.minLength(50)]],
+          category: [`${this.post.category.categoryId}-${this.post.category.category}`, Validators.required],
+          postImg: ['', Validators.required],
+          content: [this.post.content, Validators.required]
+        })
+        this.imgSrc = this.post.postImgPath
+        this.formStatus = "Edit"
+      })
     })
   }
   
