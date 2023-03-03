@@ -19,7 +19,7 @@ export class PostsService {
     private router: Router
   ) { }
 
-  uploadImage(selectedImage: string, postData: Post) {
+  uploadImage(selectedImage: string, postData: Post, formStatus: any, id: any) {
     const filePath = `postIMG/${Date.now()}`;
     //console.log(filePath)
     this.storage.upload(filePath, selectedImage).then(() => {
@@ -29,7 +29,11 @@ export class PostsService {
         //console.log(URL)
         postData.postImgPath = URL;
         // console.log(postData);
-        this.saveData(postData);
+        if (formStatus == 'Edit') {
+          this.updateData(id, postData);
+        } else {
+          this.saveData(postData);
+        }
       })
     })
   }
@@ -54,5 +58,12 @@ export class PostsService {
   loadOneData(id: any) {
     return this.afs.doc(`posts/${id}`).valueChanges();
    // return this.afs.collection('post').doc(id).valueChanges();
+  }
+
+  updateData(id: any, postData: any) {
+    this.afs.doc(`posts/${id}`).update(postData).then(() => {
+    this.toastr.success('Data Updated Successfully');
+    this.router.navigate(['/posts']);
+    })
   }
 }
