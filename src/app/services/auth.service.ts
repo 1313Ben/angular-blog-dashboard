@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
 
   loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isLoggedInGuard: boolean = false
 
   constructor(private afAuth: AngularFireAuth, private toastr: ToastrService, private router: Router) { }
 
@@ -17,7 +18,10 @@ export class AuthService {
     this.afAuth.signInWithEmailAndPassword(email, pasword).then(logRef => {
       this.toastr.success('Logged in Successfully')
       this.loadCurrentUser()
+
       this.loggedIn.next(true)
+      this.isLoggedInGuard = true
+
       this.router.navigate(['/'])
     }).catch(e => {
       this.toastr.warning(e)
@@ -35,7 +39,10 @@ export class AuthService {
     this.afAuth.signOut().then(() => {
       this.toastr.success('User logged out successfully');
       localStorage.removeItem('user');
-      this.loggedIn.next(false)
+
+      this.loggedIn.next(false);
+      this.isLoggedInGuard = false;
+
       this.router.navigate(['/login']);
     })
   }
