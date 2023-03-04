@@ -8,7 +8,7 @@
             <h3 class="text-theme-primary">Login</h3>
             <p>Please login to your admin account to post a new blog Post</p>
           </div>
-          <form #loginForm="ngForm">
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.value)">
             <div class="form-group">
               <input
                 type="email"
